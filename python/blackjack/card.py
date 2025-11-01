@@ -1,8 +1,23 @@
 ### Creating a Class Card
-import logging
+#import logging
 from typing import Literal
 
 class Card:
+    """
+    This class represents a playing card
+    
+    # Variables:
+        RANKS: dict[str, int] -> All the possible ranks for a card and its corresponding values
+        SUITS: list[str] -> All the possible card's suits
+    
+    # Args:
+        rank: Literal -> The Card's rank
+        suit: Literal -> The Card's suit
+    
+    # Properties:
+        value: int -> The Card's value
+
+    """
     RANKS: dict[str, int] = {
         'A':11, 
         '2':2, 
@@ -43,6 +58,7 @@ class Card:
         return card
 
 if __name__ == '__main__':
+    print(Card.RANKS)
     a: Card = Card('J', '♠')
-    logging.info(a.value)
-    logging.info(a)
+    print(a.RANKS)
+    print(type(a))
