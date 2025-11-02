@@ -17,8 +17,8 @@ class Deck:
     def shuffle(self):
         shuffle(self.cards)
 
-    def set_deck(self):
-        self.cards = self.create()
+    def set_deck(self, cards: list[Card] = None):
+        self.cards: list[Card] = self.create() if not cards else cards
         self.shuffle()
 
     def draw(self):
