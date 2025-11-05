@@ -32,6 +32,7 @@ class Hand:
                 self.total += ace.value
             
         print("No Aces to Account for")
+
+    def __repr__(self):
+        return str(self.cards_by_rank)
                 
-
-
