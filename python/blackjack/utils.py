@@ -34,10 +34,22 @@ def deal_round(deck: Deck) -> tuple[Hand, Hand]:
     player = Hand()
     dealer = Hand()
     for i in range(1,3):
-        player.get_one_card(deck.draw())
-        dealer.get_one_card(deck.draw())
-    tupla = (player, dealer)
-     
-    return tupla
+        card: Card = deck.draw()
+        player.get_one_card(card)
+        print(f"Player receives card {card}")
 
-print(deal_round(Deck()))
+
+        card: Card = deck.draw()
+        dealer.get_one_card(card)
+        
+        if i != 1:
+            print(f"Dealer receives a card")
+            continue
+
+        print(f"Dealer receives card {card}")
+
+    hands: tuple[Hand, Hand] = (player, dealer)
+     
+    return hands
+
+deal_round(Deck())
