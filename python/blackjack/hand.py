@@ -34,5 +34,8 @@ class Hand:
         print("No Aces to Account for")
 
     def __repr__(self):
-        return str(self.cards_by_rank)
+        cards = []
+        for value in self.cards_by_rank.values():
+            cards.extend(value)
+        return str(cards)
                 

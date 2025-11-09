@@ -52,4 +52,44 @@ def deal_round(deck: Deck) -> tuple[Hand, Hand]:
      
     return hands
 
-deal_round(Deck())
+
+
+def player_turn(deck: Deck, player: Hand) -> str:
+    print(f"Suas cartas são:{player} e a soma é:{player.total}")
+    
+    while True:
+        choice = input("Deseja parar (s) ou pedir mais uma carta (h)?")
+        if choice.lower() not in ('s', 'h'):
+            raise ValueError(f'Invalid option!\nChoose "s" or "h".')
+        match choice:
+            case 's':
+                print("Você é um frouxo!")
+                return 'stand'
+            case 'h':
+                player.get_one_card(deck.draw())
+                print(f"Agora suas cartas são:{player} e a soma é:{player.total}")
+                if player.total > 21:
+                    print("Bust, otário!")
+                    return 'bust'
+
+
+
+def dealer_turn(deck: Deck, dealer: Hand) -> None:
+    while True:
+        print(f"As cartas do dealer são:{dealer} e a soma é:{dealer.total}")
+        if dealer.total < 17:
+            dealer.get_one_card(deck.draw())
+        elif dealer.total <= 21:
+            return 'stand'
+        else:
+            return 'bust'
+            
+
+
+
+deck = Deck()
+player, dealer = deal_round(deck)
+result_player = player_turn(deck,player)
+result_dealer = dealer_turn(deck,dealer)
+print(result_dealer)
+
