@@ -5,6 +5,8 @@ class Hand:
     def __init__(self):
         self.cards_by_rank: dict[str, list[Card]] = {}
         self.total: int = 0
+        self.is_bust: bool = False
+        self.is_blackjack: bool = False
 
     def get_one_card(self, card: Card):
         cards: list[Card] = self.cards_by_rank.get(card.rank, [])

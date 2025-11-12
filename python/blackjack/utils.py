@@ -48,6 +48,9 @@ def deal_round(deck: Deck) -> tuple[Hand, Hand]:
 
         print(f"Dealer receives card {card}")
 
+    player.is_blackjack = is_blackjack(player)
+    dealer.is_blackjack = is_blackjack(dealer)
+
     hands: tuple[Hand, Hand] = (player, dealer)
      
     return hands
@@ -70,6 +73,7 @@ def player_turn(deck: Deck, player: Hand) -> str:
                 print(f"Agora suas cartas são:{player} e a soma é:{player.total}")
                 if player.total > 21:
                     print("Bust, otário!")
+                    player.is_bust = True
                     return 'bust'
 
 
@@ -82,14 +86,35 @@ def dealer_turn(deck: Deck, dealer: Hand) -> None:
         elif dealer.total <= 21:
             return 'stand'
         else:
+            dealer.is_bust = True
             return 'bust'
-            
+          
+def compare(player: Hand, dealer: Hand) -> str:
+    # Finais imediatos
+    if player.is_bust:
+        return "Lose"
+    if dealer.is_bust:
+        return "Win"
 
+    # Blackjacks
+    if player.is_blackjack and dealer.is_blackjack:
+        return "Push"
+    if player.is_blackjack:
+        return "Blackjack"
+    if dealer.is_blackjack:
+        return "Lose"
+
+    # Pontuações "normais"
+    if player.total == dealer.total:
+        return "Push"
+    return "Win" if player.total > dealer.total else "Lose"
+    
 
 
 deck = Deck()
 player, dealer = deal_round(deck)
 result_player = player_turn(deck,player)
 result_dealer = dealer_turn(deck,dealer)
-print(result_dealer)
-
+#print(result_dealer)
+result_game = compare(player, dealer)
+print(result_game)
