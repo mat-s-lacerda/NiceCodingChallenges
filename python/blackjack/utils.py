@@ -109,12 +109,3 @@ def compare(player: Hand, dealer: Hand) -> str:
         return "Push"
     return "Win" if player.total > dealer.total else "Lose"
     
-
-
-deck = Deck()
-player, dealer = deal_round(deck)
-result_player = player_turn(deck,player)
-result_dealer = dealer_turn(deck,dealer)
-#print(result_dealer)
-result_game = compare(player, dealer)
-print(result_game)
