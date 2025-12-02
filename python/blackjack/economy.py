@@ -1,4 +1,5 @@
 import uuid
+from utils import NoMoneyException
 
 class Wallet:
     def __init__(self, bankroll: int = 100, base_bet: int = 10):
@@ -6,12 +7,11 @@ class Wallet:
         self.bankroll: int = bankroll
         self.base_bet: int = base_bet
     
-    def bet(self, ammount: int = None):
+    def bet(self, ammount: int = None) -> int:
         ammount: int = ammount if ammount else self.base_bet 
         
         if self.bankroll < ammount:
-            print(f"Not enough in wallet to bet! You only have {self.bankroll} credits left.")
-            return
+            raise NoMoneyException(f"Not enough in wallet to bet! You only have {self.bankroll} credits left.")
          
         self.bankroll -= ammount
         return ammount

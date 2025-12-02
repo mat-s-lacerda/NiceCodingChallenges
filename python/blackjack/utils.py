@@ -108,4 +108,7 @@ def compare(player: Hand, dealer: Hand) -> str:
     if player.total == dealer.total:
         return "Push"
     return "Win" if player.total > dealer.total else "Lose"
-    
+
+class NoMoneyException(Exception):
+    pass
+

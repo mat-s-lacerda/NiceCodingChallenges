@@ -210,14 +210,12 @@ Juntar tudo num jogo completo.
 Função play_round() que:
 1️⃣ cobra a aposta
 2️⃣ distribui as cartas
-3️⃣ verifica naturais
-4️⃣ executa o turno do jogador
-5️⃣ executa o turno do dealer (se jogador não estourar)
-6️⃣ compara e liquida o resultado
+3️⃣ executa o turno do jogador
+4️⃣ executa o turno do dealer (se jogador não estourar)
+5️⃣ compara e liquida o resultado
 
 Laço while bankroll >= base_bet: perguntando “Apostar 10? (s/n)”
 
-Permitir sair no meio da mão digitando q; devolver a aposta dessa rodada.
 
 ### Testes
 
