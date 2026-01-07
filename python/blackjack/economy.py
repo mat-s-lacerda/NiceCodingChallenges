@@ -19,6 +19,9 @@ class Wallet:
     def profit(self, ammount: int):
         self.bankroll += ammount
 
+    def status(self):
+        return self.bankroll
+
 
 class Bank:
     def __init__(self):
