@@ -4,20 +4,27 @@ from typing import Literal
 
 class Card:
     """
-    This class represents a playing card
-    
-    # Variables:
-        RANKS: dict[str, int] -> All the possible ranks for a card and its corresponding values
-        SUITS: list[str] -> All the possible card's suits
-    
-    # Args:
-        rank: Literal -> The Card's rank
-        suit: Literal -> The Card's suit
-    
-    # Properties:
-        value: int -> The Card's value
+    Represents a playing card.
 
+    Parameters
+    ----------
+    rank : str
+        The card's rank (e.g., 'A', '2', 'K').
+    suit : str
+        The card's suit (e.g., '♠', '♥').
+
+    Attributes
+    ----------
+    RANKS : dict
+        Dictionary containing all possible ranks and their corresponding values.
+    SUITS : list
+        List containing all possible card suits.
+
+    Notes
+    -----
+    The `value` property returns the card's numerical value based on its rank.
     """
+    
     RANKS: dict[str, tuple[int, int]] = {
         'A':(11,1), 
         '2':(2,None), 
