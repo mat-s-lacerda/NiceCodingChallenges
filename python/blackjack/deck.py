@@ -1,6 +1,33 @@
 from card import Card
 from random import shuffle
 class Deck:
+    """
+    Represents a deck of playing cards.
+
+    Parameters
+    ----------
+
+    Attributes
+    ----------
+    
+    cards: list[Card]
+        A list of cards in the deck.
+
+    Methods
+    -------
+    create()
+        Creates a deck of cards.
+    shuffle()
+        Shuffles the deck of cards.
+    draw()
+        Draws a card from the deck.
+
+    Notes
+    -----
+    This class creates a deck of 52 cards, shuffles it, and provides a method to draw a card. 
+    If the deck runs out of cards, it creates a new deck.
+    """
+
     def __init__(
         self
     ):
