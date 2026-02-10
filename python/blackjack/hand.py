@@ -1,6 +1,35 @@
 from card import Card
 
 class Hand:
+    """
+    Represents a playing hand.
+
+    Parameters
+    ----------  
+
+    Attributes
+    ----------
+    cards_by_rank : dict[str, list[Card]]
+        A dictionary to store cards by rank.
+    total : int
+        The current total value of all cards inthe hand.
+    is_bust : bool
+        A flag indicating whether the hand is bust, which means the total value exceeds 21.
+    is_blackjack : bool
+        A flag indicating whether the hand is a blackjack, which means the total value is exactly 21.
+
+    Methods
+    -------
+    get_one_card(card: Card)
+        Adds a card to the hand and updates the total value. This method also checks for aces.
+    account_for_aces()
+        Adjusts the total value of the hand based on aces to prevent bust.
+
+    Notes
+    -----
+    This class represents a playing hand with a dictionary to store cards by rank, a total value, and flags for bust and blackjack.
+    
+    """
 
     def __init__(self):
         self.cards_by_rank: dict[str, list[Card]] = {}

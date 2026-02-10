@@ -2,6 +2,40 @@ import uuid
 from utils import NoMoneyException
 
 class Wallet:
+    """
+    Represents a playing wallet.
+
+    Parameters
+    ----------
+    bankroll : int
+        Represents the wallet's current balance.
+    base_bet : int
+        Represents the base bet amount for the wallet.    
+
+    Attributes
+    ----------
+    id : uuid
+        Represents the wallet's unique identifier.
+    bankroll : int
+        Represents the wallet's current balance.
+    base_bet : int
+        Represents the base bet amount for the wallet. 
+
+    Methods
+    -------
+    bet()
+        Makes a bet from the wallet.
+    profit()
+        Adds money to the wallet.
+    status()
+        Returns the wallet's current balance.
+
+    Notes
+    -----
+    This class represents a playing wallet, with a unique identifier, a current balance, and a base bet amount. 
+    If no base bet is provided, it defaults to 10. If the wallet runs out of money, it raises a NoMoneyException.
+    """
+
     def __init__(self, bankroll: int = 100, base_bet: int = 10):
         self.id: str = uuid.uuid4()
         self.bankroll: int = bankroll
@@ -24,6 +58,31 @@ class Wallet:
 
 
 class Bank:
+    """
+    Represents a game bank.
+
+    Parameters
+    ----------
+
+    Attributes
+    ----------   
+    ledger : dict
+        A dictionary to keep track of bets and settlements.
+
+    Methods
+    -------
+    receive_bet()
+        Adds a bet to the bank.
+    settle_round_result()
+        Calculates the result of a round and updates the wallet accordingly.
+    reset()
+        Clears the ledger for a new round.
+
+    Notes
+    -----
+    This class represents a game bank with a ledger for keeping track of bets and settlements.
+    """
+
     def __init__(self):
         self.ledger: dict = {}
 

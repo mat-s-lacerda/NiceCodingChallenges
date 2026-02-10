@@ -1,7 +1,26 @@
+"""
+Functions for playing blackjack. 
+This module contains functions for dealing cards, checking for blackjack, and comparing hands.
+"""
+
 from hand import Hand, Card
 from deck import Deck
 
 def is_blackjack(hand: Hand) -> bool:
+    """
+    Verify if a hand is a blackjack, which is a hand with 21 points and only two cards.
+
+    Parameters
+    ----------
+    hand : Hand
+        The hand to be checked.
+
+    Returns
+    -------
+    bool
+        True if the hand is a blackjack, False otherwise.
+    """
+
     if len(hand.cards_by_rank.keys()) == 1:
         return False
     
@@ -18,19 +37,21 @@ def is_blackjack(hand: Hand) -> bool:
     return True
         
 
-#a = Hand()
-#a.cards_by_rank = {
-#    'A':[
-#        Card('A', '♠')
-#    ],
-#    'K':[
-#        Card('2', '♠')
-#    ]
-#}
-#
-#print(is_blackjack(a))
-
 def deal_round(deck: Deck) -> tuple[Hand, Hand]:
+    """
+    Deal two cards to the player and one card (visible) to the dealer. 
+    Then, check if either hand is a blackjack.
+
+    Parameters
+    ----------
+    deck : Deck
+        The deck of cards to deal from.
+
+    Returns
+    -------
+    tuple[Hand, Hand]
+        A tuple containing the player's hand and the dealer's hand.
+    """
     player = Hand()
     dealer = Hand()
     for i in range(1,3):
@@ -56,8 +77,24 @@ def deal_round(deck: Deck) -> tuple[Hand, Hand]:
     return hands
 
 
-
 def player_turn(deck: Deck, player: Hand) -> str:
+    """
+    Simulate the player's turn. The player can choose to stand or hit, and the game ends if the player busts or chooses to stand.
+    After each choice, the player's hand is printed.
+
+    Parameters
+    ----------
+    deck : Deck
+        The deck of cards to deal from.
+    player : Hand
+        The player's hand.
+
+    Returns
+    -------
+    str
+        A string indicating whether the player chose to stand or hit, and whether the player busts.
+    """
+
     print(f"Suas cartas são:{player} e a soma é:{player.total}")
     
     while True:
@@ -77,8 +114,22 @@ def player_turn(deck: Deck, player: Hand) -> str:
                     return 'bust'
 
 
-
 def dealer_turn(deck: Deck, dealer: Hand) -> None:
+    """
+    Simulate the dealer's turn. The dealer not can choose, but it is verified if the dealer has 17 or more points.
+    After each choice, the dealer's hand is printed.
+
+    Parameters
+    ----------
+    deck : Deck
+        The deck of cards to deal from.
+    dealer : Hand
+        The dealer's hand.
+
+    Returns
+    -------
+    """
+
     while True:
         print(f"As cartas do dealer são:{dealer} e a soma é:{dealer.total}")
         if dealer.total < 17:
@@ -90,6 +141,21 @@ def dealer_turn(deck: Deck, dealer: Hand) -> None:
             return 'bust'
           
 def compare(player: Hand, dealer: Hand) -> str:
+    """
+    Compare the player's and dealer's hands to determine the result of the game.
+
+    Parameters
+    ----------
+    player : Hand
+        The player's hand.
+    dealer : Hand
+        The dealer's hand.
+
+    Returns
+    -------
+    str
+        A string indicating the result of the game, based on the player's and dealer's hands and the comparison of their totals.
+    """
     # Finais imediatos
     if player.is_bust:
         return "Lose"

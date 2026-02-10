@@ -1,3 +1,8 @@
+"""
+Main module for playing blackjack.
+This module orchestrates the entire game flow, including betting, dealing cards, player and dealer turns, and settling the results using the Bank and Wallet systems.
+"""
+
 from economy import Wallet, Bank
 from utils import NoMoneyException, deal_round, player_turn, dealer_turn, compare
 from deck import Deck
@@ -5,6 +10,23 @@ from hand import Hand
 
 
 def play_round():
+    """
+    This function plays a single round of blackjack. It contains the main game loop, with importants functions from other modules, like deal_round, player_turn, dealer_turn, compare and the Wallet.
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+
+    Notes
+    -----
+    - The game continues indefinitely until the user manually stops it
+      (pressing 'Ctrl+C').
+    - It handles 'NoMoneyException' to prevent betting more than the
+      available bankroll.
+    """
+
     player_w: Wallet = Wallet()
     round_b: Bank = Bank()
     while True: 
