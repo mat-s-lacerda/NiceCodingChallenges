@@ -3,10 +3,11 @@ Main module for playing blackjack.
 This module orchestrates the entire game flow, including betting, dealing cards, player and dealer turns, and settling the results using the Bank and Wallet systems.
 """
 
-from economy import Wallet, Bank
+from economy import Bank
 from utils import NoMoneyException, deal_round, player_turn, dealer_turn, compare
 from deck import Deck
 from hand import Hand
+from player import Wallet
 
 
 def play_round():

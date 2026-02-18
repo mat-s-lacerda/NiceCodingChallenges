@@ -6,6 +6,7 @@ This module contains functions for dealing cards, checking for blackjack, and co
 from hand import Hand, Card
 from deck import Deck
 
+
 def is_blackjack(hand: Hand) -> bool:
     """
     Verify if a hand is a blackjack, which is a hand with 21 points and only two cards.
@@ -52,16 +53,22 @@ def deal_round(deck: Deck) -> tuple[Hand, Hand]:
     tuple[Hand, Hand]
         A tuple containing the player's hand and the dealer's hand.
     """
-    player = Hand()
-    dealer = Hand()
+    from player import Gambler, Player
+
+    gambler = Gambler()
+    dealer = Player()
+
+    gambler_hand: Hand = gambler.hand
+    dealer_hand: Hand = dealer.hand
+
     for i in range(1,3):
         card: Card = deck.draw()
-        player.get_one_card(card)
+        gambler_hand.get_one_card(card)
         print(f"Player receives card {card}")
 
 
         card: Card = deck.draw()
-        dealer.get_one_card(card)
+        dealer_hand.get_one_card(card)
         
         if i != 1:
             print(f"Dealer receives a card")
@@ -69,10 +76,10 @@ def deal_round(deck: Deck) -> tuple[Hand, Hand]:
 
         print(f"Dealer receives card {card}")
 
-    player.is_blackjack = is_blackjack(player)
-    dealer.is_blackjack = is_blackjack(dealer)
+    gambler_hand.is_blackjack = is_blackjack(gambler_hand)
+    dealer_hand.is_blackjack = is_blackjack(dealer_hand)
 
-    hands: tuple[Hand, Hand] = (player, dealer)
+    hands: tuple[Hand, Hand] = (gambler_hand, dealer_hand)
      
     return hands
 
